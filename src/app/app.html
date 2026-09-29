@@ -1,3 +1,7 @@
 <h1 class="text-3xl font-bold text-blue-600 p-8">{{ title() }}</h1>
 
+<main class="max-w-xl px-8">
+  <app-link-card [link]="link()" (remove)="onRemove($event)" />
+</main>
+
 <router-outlet />

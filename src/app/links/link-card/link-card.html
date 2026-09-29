@@ -1,0 +1,6 @@
+<article class="rounded-lg border border-gray-200 p-4 shadow-sm">
+  <p class="font-mono text-lg font-semibold text-blue-600">/{{ link().code }}</p>
+  <p class="truncate text-sm text-gray-600">{{ link().url }}</p>
+  <p class="mt-2 text-xs text-gray-500">{{ link()._count.clicks }} clicks</p>
+  <button (click)="remove.emit(link().code)">remove</button>
+</article>

@@ -2,5 +2,12 @@
   <p class="font-mono text-lg font-semibold text-blue-600">/{{ link().code }}</p>
   <p class="truncate text-sm text-gray-600">{{ link().url }}</p>
   <p class="mt-2 text-xs text-gray-500">{{ link()._count.clicks }} clicks</p>
+  <p class="text-xs text-gray-500">
+    @if (link().lastClickedAt; as lastClick) {
+      Last click: {{ lastClick }}
+    } @else {
+      Never clicked
+    }
+  </p>
   <button (click)="remove.emit(link().code)">remove</button>
 </article>

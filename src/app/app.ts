@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LinkCard } from './links/link-card/link-card';
 import { Link } from './links/link.model';
@@ -41,6 +41,18 @@ export class App {
       _count: { clicks: 12 },
     },
   ]);
+
+  protected readonly totalClicks = computed(() =>
+    this.links().reduce((sum, link) => sum + link._count.clicks, 0),
+  );
+
+  protected readonly mostClicked = computed(() => {
+    const links = this.links();
+    if (links.length === 0) {
+      return null;
+    }
+    return links.reduce((top, link) => (link._count.clicks > top._count.clicks ? link : top));
+  });
 
   protected onRemove(code: string): void {
     this.links.update((links) => links.filter((l) => l.code !== code));
